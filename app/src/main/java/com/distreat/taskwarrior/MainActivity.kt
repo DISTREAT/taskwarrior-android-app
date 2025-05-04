@@ -11,7 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.datepicker.MaterialDatePicker
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 
 class UnsupportedPlatformException : Exception("No Taskwarrior binary for the target device")
@@ -40,6 +43,9 @@ class MainActivity : AppCompatActivity() {
         initializeApplicationDirectory()
         findViewById<AppCompatImageView>(R.id.button_execute).setOnClickListener {
             handleCommandInput()
+        }
+        findViewById<AppCompatImageView>(R.id.button_calendar).setOnClickListener {
+            promptCalendarDate()
         }
         findViewById<EditText>(R.id.input_command).setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_GO) {
@@ -115,6 +121,19 @@ class MainActivity : AppCompatActivity() {
         } catch (_: UnsupportedPlatformException) {
             textViewCommandOutput.append(getString(R.string.message_unsupported_abi))
             return
+        }
+    }
+
+    private fun promptCalendarDate() {
+        val editTextCommandInput = this.findViewById<EditText>(R.id.input_command)
+        val datePicker = MaterialDatePicker.Builder.datePicker()
+            .setTitleText("Insert calendar date")
+            .build()
+        datePicker.show(supportFragmentManager, "DATE")
+        datePicker.addOnPositiveButtonClickListener {
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val date = dateFormat.format(it)
+            editTextCommandInput.append(date)
         }
     }
 }
