@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Taskwarrior 3</string>
     <string name="hint_input_command">add Hello World!</string>
-    <string name="welcome_text">Taskwarrior 3 for Android:\n\nhttps://github.com/DISTREAT/taskwarrior-android-app</string>
+    <string name="welcome_text">Taskwarrior 3 for Android:\nhttps://github.com/DISTREAT/taskwarrior-android-app\n\n</string>
     <string name="description_button_calendar">Insert calendar date</string>
     <string name="content_button_execute">Execute command</string>
+    <string name="message_unsupported_abi">\nfatal: there is no Taskwarrior binary available for your ABI. Sorry.\n</string>
 </resources>
