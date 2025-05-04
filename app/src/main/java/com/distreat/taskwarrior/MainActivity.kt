@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
         val arguments: MutableList<String> = ArrayList()
         arguments.add(executablePath.absolutePath)
         arguments.add("rc.verbose=no")
-        arguments.add("rc.confirmation=off")
+        arguments.add("rc.confirmation=no")
         arguments.addAll(taskwarriorArguments)
         val processBuilder = ProcessBuilder(arguments)
         processBuilder.redirectErrorStream(true)
